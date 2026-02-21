@@ -11,9 +11,13 @@ Este dashboard analiza la prevalencia de dificultades funcionales asociadas
 al deterioro cognitivo subjetivo en adultos mayores en los estados de EE.UU.
 """)
 
+# -----------------------------
+# CARGA DE DATOS
+# -----------------------------
+
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data.csv")
+    df = pd.read_csv("Alzheimer's_Disease_and_Healthy_Aging_Data_20260221.csv")
     return df
 
 df = load_data()
@@ -124,5 +128,5 @@ Indicador: Functional difficulties associated with subjective cognitive decline
 Fecha de descarga: Febrero 2026  
 Licencia: Datos públicos del gobierno de EE.UU.
 
-Para actualizar el dashboard, se debe descargar la versión más reciente del dataset y reemplazar el archivo CSV.
+Para actualizar el dashboard, descargar la versión más reciente del dataset y reemplazar el archivo CSV.
 """)
