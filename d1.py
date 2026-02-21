@@ -1,4 +1,4 @@
-import streamlit as st
+     import streamlit as st
 import pandas as pd
 import plotly.express as px
 import re
@@ -188,31 +188,30 @@ if df is not None:
 
         st.subheader("2. Framework QUEST Aplicado")
         st.info("""
-        * **Question (Pregunta):** ¿Cómo impacta el deterioro cognitivo a los diferentes estados y géneros en EE.UU.?
-        * **Understand (Entender):** Análisis de variables demográficas y métricas de salud pública del BRFSS.
-        * **Explore (Explorar):** Identificación de valores atípicos mediante rankings y mapas de calor geográficos.
-        * **Synthesize (Sintetizar):** Correlación entre la edad avanzada y la disparidad de género en los reportes de salud.
-        * **Tell (Comunicar):** Visualización orientada a la toma de decisiones para audiencias no técnicas.
+        * **Question:** ¿Cómo impacta el deterioro cognitivo a los diferentes estados y géneros en EE.UU.?
+        * **Understand:** Análisis de variables demográficas y métricas de salud pública.
+        * **Explore:** Identificación de valores atípicos mediante rankings y mapas de calor geográficos.
+        * **Synthesize:** Correlación entre la edad avanzada y la disparidad de género en los reportes de salud.
+        * **Tell:** Visualización orientada a la toma de decisiones para audiencias no técnicas.
         """)
 
-        st.subheader("3. Diccionario de Variables (API Fields)")
+        st.subheader("3. Diccionario de Variables")
         st.markdown("""
-        | Campo API | Descripción | Tipo de Dato |
+        | Variable | Descripción | Tipo de Dato |
         | :--- | :--- | :--- |
-        | **LocationDesc** | Descripción completa de la ubicación geográfica (Estado). | Texto |
-        | **Topic** | Descripción del tema de salud analizado. | Texto |
-        | **Question** | La pregunta específica realizada en la encuesta. | Texto |
-        | **Data_Value** | Valor numérico del indicador de salud (Prevalencia %). | Número |
-        | **Stratification1** | Categoría de estratificación primaria (ej. Grupo de Edad). | Texto |
-        | **Stratification2** | Categoría de estratificación secundaria (ej. Género). | Texto |
+        | **LocationDesc** | Nombre de la ubicación geográfica analizada. | Texto |
+        | **Topic** | Descripción del tema de salud estudiado. | Texto |
+        | **Question** | Pregunta realizada en la encuesta. | Texto |
+        | **Data_Value** | Valor numérico de la prevalencia. | Número |
+        | **Stratification1** | Clasificación por grupo de edad. | Texto |
+        | **Stratification2** | Clasificación por género. | Texto |
         | **Geolocation** | Coordenadas para la representación en mapas. | Geográfico |
         """)
 
-        st.subheader("4. Guía de Actualización (Sostenibilidad)")
+        st.subheader("4. Guía de Actualización")
         st.write("""
-        Para mantener este dashboard vigente, se debe descargar el archivo .CSV actualizado desde el portal Open Data del CDC. 
-        El script está diseñado para detectar automáticamente la estructura de columnas siempre que se respeten los nombres 
-        de los campos API mencionados arriba. Al reemplazar el archivo en el repositorio, las métricas se recalcularán automáticamente.
+        Para mantener este dashboard vigente, se debe descargar el archivo actualizado desde el portal Open Data del CDC. 
+        Al reemplazar el archivo en el repositorio, las métricas y visualizaciones se recalcularán de manera inmediata.
         """)
 
     # Pie de página formal
@@ -220,7 +219,7 @@ if df is not None:
     st.markdown("""
         <div style="text-align: center; color: #6B7280; font-size: 0.8em;">
             Informe Técnico - Alzheimer’s Disease and Healthy Aging Data<br>
-            Elaborado por: Torres Lugo, Perez Sujano, Sojo Jemeniz, Ramirez.
+            Elaborado por: Valentina Torres, Melanie Paola Perez, Natalia Sojo y Dana Valentina Ramirez.
         </div>
         """, unsafe_allow_html=True)
 
