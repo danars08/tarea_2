@@ -17,7 +17,7 @@ al deterioro cognitivo subjetivo en adultos mayores en los estados de EE.UU.
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("Alzheimer's_Disease_and_Healthy_Aging_Data_20260221.csv")
+    df = pd.read_csv("Alzheimer's_Disease_and_Healthy_Aging_Data_20260221.csv", sep=";")
     return df
 
 df = load_data()
