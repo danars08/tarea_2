@@ -1,0 +1,551 @@
+gender,monthly_salary,years_of_experience,department,has_sons,education_level,total_compensation,job_level,age,promotion_history
+Male,40598616,11,IT,False,PhD,490913772,4,49,3
+Female,13185610,0,Sales,True,Master,159143470,4,38,2
+Female,6896573,13,Operations,False,Bachelor,83310688,2,58,1
+Female,17750270,6,IT,True,Bachelor,214897730,4,55,0
+Male,35197725,13,IT,False,Bachelor,426409799,5,35,2
+Male,20367488,6,IT,False,Master,246081654,3,47,2
+Male,10558282,8,IT,True,High School,127387740,4,44,3
+Female,9838079,0,HR,True,Bachelor,118993463,4,51,2
+Female,9458184,6,Marketing,False,Master,114265061,2,28,2
+Female,11250384,0,HR,True,Bachelor,135901936,5,44,2
+Male,13229073,0,HR,False,Bachelor,160685448,3,48,2
+Female,6560563,0,Operations,True,Bachelor,79484284,2,22,1
+Female,4718462,4,Operations,False,High School,57141136,2,26,1
+Male,6370987,0,Marketing,True,Bachelor,77072504,1,22,1
+Male,19805168,4,Operations,True,Bachelor,239614904,5,35,1
+Male,11989011,11,Finance,False,High School,145171115,3,45,0
+Male,20306264,11,Marketing,True,High School,246166313,5,53,1
+Female,16111813,2,Operations,True,Master,195326620,3,38,2
+Male,27206732,24,Marketing,True,Bachelor,328533598,5,54,1
+Male,7155537,2,HR,True,Bachelor,86617847,2,24,1
+Female,5210125,0,HR,True,Bachelor,63027279,2,22,3
+Male,23505790,12,Marketing,True,Master,285321445,2,37,2
+Male,25426275,13,Finance,False,Bachelor,308085793,4,41,1
+Male,7470957,0,Finance,True,Bachelor,90457789,1,37,1
+Male,22084813,0,Marketing,False,Master,266572206,5,22,1
+Female,9399371,6,Operations,True,Master,113868749,1,37,0
+Male,4766550,2,Sales,True,High School,57534872,2,24,1
+Male,27927759,9,Finance,False,Master,337656341,4,44,3
+Female,23172891,19,IT,True,Bachelor,279762970,5,41,2
+Male,13477366,6,HR,False,Bachelor,163376493,3,28,2
+Female,8258218,7,Marketing,True,High School,99747403,4,32,1
+Male,6722680,5,IT,False,High School,81312611,2,27,1
+Male,17316989,15,Marketing,False,Bachelor,210238822,2,37,1
+Female,13372518,19,HR,False,Bachelor,161518467,4,47,2
+Female,12583462,6,HR,False,Bachelor,152331646,4,28,2
+Female,8033730,6,Finance,False,Bachelor,97189932,2,43,0
+Male,28390388,10,Finance,True,Master,342434388,5,32,3
+Male,14005026,8,IT,True,High School,169899847,3,30,0
+Female,6721904,14,Marketing,False,Bachelor,81107933,2,36,3
+Male,7629269,5,HR,True,High School,92334623,3,27,0
+Male,46867169,10,IT,True,Master,567583024,5,32,2
+Male,18090189,4,Sales,False,Bachelor,219190831,4,26,0
+Male,49447186,22,IT,True,PhD,599397643,3,57,3
+Female,5499647,13,Operations,False,High School,66451104,2,38,1
+Male,6285097,9,IT,False,High School,75803914,2,31,3
+Female,8254639,6,Operations,False,Bachelor,100088405,2,40,1
+Male,26985325,14,Operations,False,Bachelor,326743957,5,36,2
+Female,6906262,13,Operations,True,High School,83809220,2,35,3
+Female,13376428,6,Sales,True,Master,162308573,2,44,0
+Male,8000035,8,IT,False,High School,97087619,1,45,3
+Female,9743438,9,IT,True,Bachelor,117931246,2,32,1
+Female,8991922,10,Sales,False,Master,108712575,1,32,2
+Female,10720593,13,HR,False,Bachelor,130054089,2,35,0
+Female,11912512,0,Finance,True,Master,144148738,2,22,3
+Female,4075774,0,IT,True,High School,49221124,2,22,1
+Female,19413146,29,Finance,False,Bachelor,235616336,2,51,0
+Male,29650318,25,Marketing,True,High School,359937971,5,54,2
+Male,6114511,13,Marketing,False,High School,73997615,1,35,0
+Male,9253169,12,Sales,True,Master,111656259,1,43,2
+Male,6794796,12,Marketing,False,High School,82182407,2,41,0
+Male,16816185,16,Marketing,False,Bachelor,204019310,2,68,3
+Male,13992302,3,HR,False,Bachelor,169882772,3,49,1
+Female,4699861,9,HR,False,Bachelor,56766390,1,36,3
+Male,7042025,0,HR,True,Master,84969268,2,28,3
+Male,6758461,0,Marketing,True,High School,82040698,2,22,2
+Female,22257172,17,Sales,False,Bachelor,269201529,5,40,2
+Male,33857687,8,Operations,True,PhD,409974554,4,30,2
+Female,15770391,1,Operations,False,Bachelor,191564925,4,23,3
+Male,8083494,2,Finance,False,Master,97535364,1,31,0
+Female,11150870,0,Operations,False,High School,135130130,5,27,0
+Female,15150283,13,Operations,False,Bachelor,182813457,5,54,3
+Male,24758440,20,HR,False,Bachelor,299423428,5,46,3
+Male,9808241,15,HR,False,Bachelor,118996947,1,37,1
+Female,28159953,8,Marketing,True,PhD,340707623,4,52,2
+Female,35447789,16,Finance,True,Bachelor,430681647,5,38,2
+Female,11369704,7,IT,True,Bachelor,137690700,2,29,3
+Female,5492599,10,Finance,False,High School,66399505,2,53,3
+Male,11206112,19,Finance,False,Bachelor,135367704,2,43,0
+Male,12055927,5,Sales,False,Bachelor,145774806,3,27,3
+Male,20752703,0,Marketing,True,PhD,250973394,3,36,0
+Female,4572878,7,Sales,False,Bachelor,55177188,1,29,3
+Female,5803364,2,Finance,True,Bachelor,70181599,1,24,1
+Male,6738425,6,Finance,False,High School,81546946,2,47,1
+Male,11365762,15,Finance,False,High School,137810391,2,57,0
+Male,11107542,2,Operations,True,High School,134613475,4,24,2
+Male,24067323,14,Sales,True,Bachelor,291787143,4,43,1
+Female,7153563,7,Finance,False,Master,86277354,1,31,0
+Female,6185628,6,HR,False,Bachelor,74719850,2,33,3
+Female,7971099,10,Marketing,True,Bachelor,96606145,1,32,3
+Male,12389827,7,Marketing,False,High School,149961002,4,29,0
+Male,8183251,16,HR,False,Master,98693920,1,38,2
+Female,24170663,7,Marketing,False,Bachelor,293248260,5,29,0
+Female,6156435,18,Operations,True,High School,74674803,1,40,0
+Female,6285032,0,Operations,False,Bachelor,76107700,2,37,1
+Female,6381663,13,IT,False,Bachelor,77001028,1,35,0
+Male,7419363,0,IT,False,High School,89989352,2,28,0
+Female,12122202,9,IT,False,Bachelor,146830586,2,32,3
+Male,20103181,3,Marketing,True,Bachelor,243859152,4,45,1
+Male,8931282,1,Operations,True,High School,108315526,3,43,3
+Male,23168937,6,Operations,True,Master,281091803,3,28,3
+Male,26192621,8,Operations,True,Master,317104128,4,38,2
+Female,8962608,14,HR,True,Bachelor,108202243,3,45,2
+Male,6893524,0,Operations,True,Bachelor,83552297,1,22,1
+Male,12335856,15,HR,False,Bachelor,149459290,2,43,1
+Female,13335710,9,IT,True,Bachelor,161719525,2,31,2
+Male,14550102,1,IT,False,Bachelor,175696690,4,43,2
+Male,8001553,8,Marketing,False,High School,96639138,3,30,2
+Female,8138212,0,IT,False,Bachelor,98799007,1,22,2
+Male,16169794,0,Marketing,True,Master,196099144,2,22,2
+Male,16149337,8,Finance,False,Bachelor,196081060,2,38,3
+Male,26407110,18,Finance,False,High School,320272939,5,40,1
+Male,35761105,6,Sales,False,Master,433200870,5,28,3
+Female,7234978,9,Marketing,False,High School,87679771,2,44,3
+Female,15364985,0,Sales,False,Bachelor,186531248,4,22,0
+Female,5672383,9,Sales,False,High School,68704428,2,37,3
+Female,8535333,3,Finance,True,Bachelor,103421906,2,25,2
+Female,7948741,9,Marketing,False,Master,95973757,1,31,2
+Male,14586292,15,Finance,True,Bachelor,176532829,2,38,0
+Female,6854612,7,Sales,False,High School,83108576,2,29,0
+Female,13096362,12,Marketing,True,Master,158261478,2,34,0
+Female,18213869,9,Sales,True,Master,219990804,4,48,0
+Female,25419789,10,Operations,False,Master,307280622,5,32,0
+Male,6935022,11,Marketing,False,High School,83787098,2,46,3
+Male,8572423,4,Marketing,True,Bachelor,103549230,2,26,0
+Male,31175593,17,Sales,False,PhD,377169699,3,43,3
+Male,36104699,12,Operations,False,Master,438372621,4,52,1
+Female,3089472,0,HR,True,High School,37400021,1,22,0
+Female,5495841,8,Finance,False,High School,66372792,2,30,0
+Male,11369589,12,Sales,True,Bachelor,137196005,3,43,3
+Male,13433556,0,Marketing,False,Master,162850352,2,35,1
+Male,10583596,19,Finance,False,Bachelor,128002792,1,41,3
+Male,15791175,9,Finance,True,Bachelor,191609561,2,31,3
+Male,11175145,16,Finance,True,High School,135435560,2,38,0
+Male,12124629,0,HR,True,Bachelor,147091897,3,36,2
+Female,33433332,27,IT,False,Master,404024269,4,49,2
+Male,13282902,10,Sales,False,Bachelor,161019486,2,40,3
+Male,18337494,19,IT,False,Master,221585978,2,41,0
+Female,23778672,3,IT,True,PhD,288780466,2,33,1
+Male,9140786,11,IT,True,High School,110761405,2,33,2
+Female,5771261,3,Finance,True,Bachelor,69769963,1,33,1
+Female,5195889,7,Operations,True,Bachelor,62788453,1,41,2
+Male,33975349,11,Finance,False,Master,410326520,5,33,0
+Male,32219361,10,Finance,False,Bachelor,390579773,5,40,3
+Male,9147679,13,Marketing,False,Bachelor,110501075,2,58,1
+Male,37293723,18,Marketing,True,Master,451760396,4,46,1
+Male,12641291,12,IT,False,Bachelor,152755049,2,34,3
+Female,18962064,13,Finance,False,Master,229812198,2,50,1
+Male,38018449,11,IT,False,Bachelor,461290941,5,33,2
+Male,6400890,0,Marketing,False,High School,77642938,2,22,3
+Male,11694253,5,Operations,True,Bachelor,141833474,2,27,2
+Female,8624170,0,Sales,True,Master,104153195,2,22,2
+Male,17873457,12,IT,False,Bachelor,215696068,4,34,0
+Male,27382298,16,Operations,True,Master,331953008,3,38,2
+Male,42321953,21,Sales,True,Master,511805778,5,54,0
+Female,19952224,17,HR,False,Bachelor,241400185,5,41,1
+Male,19280838,2,IT,False,PhD,232580958,3,35,1
+Female,8704882,24,IT,False,High School,105184239,2,46,0
+Female,4873783,0,HR,True,High School,58792594,4,22,2
+Male,15343551,14,HR,True,High School,186257309,4,40,3
+Female,27085282,5,IT,False,Master,327241823,5,45,3
+Male,13834994,1,HR,False,Bachelor,167543995,4,23,0
+Female,3931808,14,Finance,False,High School,47431397,1,49,1
+Female,15066058,14,Sales,False,Bachelor,182600868,3,41,1
+Female,8711470,11,Sales,False,Bachelor,105313592,2,33,3
+Male,9057819,22,Sales,False,High School,109969284,1,44,0
+Female,28892795,15,Finance,True,Master,350756527,3,60,3
+Male,11370993,10,HR,False,Master,137467074,2,39,2
+Male,36227562,18,Operations,False,Bachelor,439841963,5,40,2
+Male,42743724,11,HR,False,PhD,519321465,4,33,0
+Female,9995902,2,IT,False,Bachelor,121293147,2,29,0
+Female,43256240,16,Marketing,False,PhD,524959390,4,46,2
+Male,6517483,7,Sales,True,Bachelor,78746906,1,29,1
+Male,10512663,9,HR,False,Bachelor,127328356,2,38,0
+Male,5464883,11,Operations,True,High School,65939568,2,33,2
+Female,12582226,10,IT,False,Master,151849130,2,42,2
+Male,31153490,13,Finance,True,Bachelor,378511798,4,41,1
+Female,5515369,10,Finance,True,High School,66677488,2,48,1
+Male,8749660,10,Operations,True,High School,106110071,2,32,1
+Female,10173221,3,IT,False,Bachelor,123427619,2,35,1
+Male,18429268,0,Sales,True,Bachelor,223680118,4,28,3
+Male,9963171,11,HR,True,Bachelor,121050400,1,33,1
+Male,13192141,5,IT,False,Master,159383947,2,41,3
+Female,3105239,4,Finance,True,High School,37460459,1,45,0
+Female,10978716,0,Operations,False,Bachelor,132809606,4,28,2
+Male,8434357,6,Operations,False,High School,101817088,4,46,3
+Female,14248424,1,HR,False,Master,171864751,5,51,0
+Female,24836604,20,Operations,True,Master,300335104,4,42,0
+Female,22203259,20,Operations,False,Bachelor,269337442,4,56,3
+Female,14320873,6,IT,True,Bachelor,173439466,3,30,0
+Male,8639227,3,Sales,False,Bachelor,104432272,2,25,0
+Male,18611347,0,HR,True,Bachelor,225548881,5,22,3
+Female,29637847,9,IT,False,Master,358051321,5,52,0
+Female,10761318,0,Sales,True,Bachelor,129795423,5,44,1
+Female,19824362,15,IT,False,Bachelor,240445559,3,37,1
+Male,7306843,0,Marketing,False,Bachelor,88530709,1,40,2
+Male,31210379,0,IT,False,Master,378538428,4,26,0
+Female,7871825,20,Operations,True,Bachelor,94961795,2,62,2
+Female,7847788,17,Sales,False,High School,95235581,2,39,1
+Female,7519864,17,HR,False,Bachelor,91108847,1,39,1
+Female,24001307,16,HR,False,Master,290672762,4,45,1
+Female,10203192,16,Sales,True,High School,123624070,3,42,0
+Male,18160512,18,Operations,False,High School,220428644,4,40,0
+Male,14709314,8,Finance,True,High School,178171335,4,30,1
+Female,17396113,14,IT,True,Bachelor,210706687,3,42,2
+Female,27472566,12,Operations,True,Bachelor,333768630,5,56,2
+Male,31542090,11,Marketing,False,Bachelor,382545801,5,51,3
+Male,10014026,5,Sales,True,Bachelor,121167776,2,53,1
+Female,13068911,9,IT,True,Bachelor,158443108,2,32,2
+Male,15628842,0,HR,False,Bachelor,189031324,5,28,1
+Male,11685991,11,Finance,False,Master,141173768,1,36,2
+Female,7919363,4,Marketing,True,Bachelor,95932919,2,38,3
+Female,27746886,3,HR,False,PhD,336945319,4,48,3
+Female,8186303,0,Sales,True,Bachelor,99411373,2,22,1
+Male,18255950,23,IT,True,High School,220728519,4,53,2
+Female,23013582,14,Sales,True,Bachelor,278636736,5,36,0
+Male,8905523,0,IT,False,Bachelor,107570232,2,33,3
+Male,9219815,4,Operations,True,Bachelor,112017127,1,27,1
+Female,7391550,0,Finance,True,High School,89794771,2,22,1
+Female,4999199,4,Operations,True,High School,60582572,2,46,2
+Female,16292090,10,Operations,False,Master,197662108,2,38,1
+Female,13221749,3,Sales,True,High School,160305231,5,25,3
+Female,10181347,3,Finance,True,Master,123330568,1,25,1
+Male,9025085,12,IT,True,Bachelor,108885857,2,34,1
+Male,7866638,1,IT,True,Bachelor,95193626,1,54,0
+Male,20974186,7,Marketing,False,Bachelor,254222461,4,35,0
+Male,8807040,0,HR,False,Bachelor,106749936,2,22,3
+Female,5066821,0,Marketing,True,Bachelor,61276010,1,35,2
+Male,14574340,13,Marketing,True,High School,177001748,3,35,0
+Female,4690440,0,IT,True,High School,56637354,2,22,2
+Female,17694329,15,Sales,True,Bachelor,214190424,4,37,3
+Female,7949986,13,Operations,True,Bachelor,96371157,1,35,0
+Male,20453201,22,Operations,False,Master,247948883,2,44,2
+Female,26147936,13,Operations,False,Master,316870559,4,56,0
+Male,20352069,8,Finance,False,Master,245950193,3,49,3
+Male,12107795,12,IT,False,Master,146190226,1,35,3
+Female,19437915,4,Sales,False,Bachelor,235533776,5,26,0
+Male,14844722,12,Finance,False,Bachelor,179828029,2,63,2
+Male,10585899,12,HR,True,Master,127836819,2,38,1
+Female,21345485,6,Sales,False,Bachelor,258781187,5,38,1
+Male,7726963,6,Marketing,False,Bachelor,93503712,1,37,0
+Female,3931745,0,Sales,False,High School,47653136,1,39,2
+Female,21220473,14,Sales,False,Bachelor,257518143,4,36,1
+Female,4194002,2,Operations,True,Bachelor,50643729,1,32,3
+Male,9127665,6,Sales,True,Master,110095367,2,32,2
+Male,28341104,6,Marketing,False,Bachelor,343780970,5,37,1
+Female,9266061,10,Marketing,True,Bachelor,112257150,2,32,2
+Male,37177236,8,IT,False,PhD,450698426,3,30,0
+Female,11778317,17,Sales,False,High School,142934987,3,39,2
+Female,10073909,6,Operations,False,Bachelor,122219212,2,35,1
+Female,9190263,14,Sales,False,High School,111629371,2,53,0
+Male,10367561,0,HR,True,Bachelor,125532856,3,22,2
+Male,14572372,26,HR,True,Master,176383474,1,48,3
+Female,6031675,2,Operations,False,Bachelor,72960165,2,50,1
+Male,15990157,0,IT,False,Master,193062472,3,22,0
+Male,15719781,12,IT,False,Bachelor,190390672,2,34,2
+Female,16918596,12,Marketing,True,Master,204460067,3,34,3
+Female,10710059,1,Marketing,True,Master,130051364,1,23,1
+Female,20717976,8,Finance,False,Master,250946218,3,30,3
+Female,4827452,4,Operations,True,High School,58476642,2,26,2
+Male,42537859,10,Sales,False,PhD,514365375,5,55,2
+Female,5586615,19,Operations,True,Bachelor,67400716,1,47,0
+Female,10624443,28,Finance,False,Bachelor,128161135,2,50,3
+Male,13640105,7,Marketing,False,Master,165019356,2,45,0
+Male,8294484,1,Operations,False,Bachelor,100094605,3,26,1
+Female,18653468,10,Operations,True,Master,225979606,3,32,0
+Female,22210529,20,Marketing,False,High School,269619998,5,42,1
+Female,11486128,3,Finance,False,Bachelor,139435418,2,25,2
+Female,14484361,23,Marketing,True,Bachelor,175540520,2,45,2
+Male,13553078,13,IT,False,High School,163707776,4,35,3
+Male,9073260,7,Sales,False,High School,110128233,2,34,1
+Female,20600666,16,Marketing,False,High School,250086902,5,45,2
+Female,17603731,20,Finance,False,Bachelor,212612561,4,42,3
+Female,15237052,8,HR,True,Bachelor,184770105,4,34,3
+Female,12960011,10,IT,True,Bachelor,156631929,3,49,0
+Male,13992995,5,HR,True,Bachelor,169766340,3,27,3
+Male,13715032,3,Marketing,False,Bachelor,166634229,2,44,2
+Female,12034586,6,IT,False,Bachelor,145169628,4,43,0
+Female,8534560,2,Sales,False,High School,103616069,3,34,1
+Female,35829239,12,Marketing,True,Master,434108376,5,41,1
+Female,20080969,3,Sales,True,Master,243935668,3,25,2
+Female,6887998,13,Operations,False,Bachelor,83357524,1,47,2
+Male,6927704,0,HR,False,Bachelor,84076450,1,36,0
+Male,19142216,10,IT,True,Master,230962617,3,32,0
+Male,13597480,18,Sales,False,High School,164395914,4,48,2
+Female,6540277,0,Finance,True,High School,78915188,4,30,2
+Male,7019381,1,Sales,True,High School,85269902,2,23,1
+Male,12991363,0,Finance,False,Master,157631062,1,22,1
+Female,14492107,2,Marketing,True,High School,175886779,5,44,1
+Male,25507013,3,IT,False,Bachelor,309767799,4,25,2
+Female,14540418,15,Sales,True,PhD,175468810,2,55,3
+Male,8763904,0,Sales,True,Master,105996822,1,22,2
+Male,22435503,11,IT,True,Bachelor,270715599,5,54,2
+Female,12673733,16,Sales,False,High School,153085658,5,40,1
+Male,27495011,12,Finance,True,Master,332157409,4,37,2
+Male,24708546,10,Sales,False,Bachelor,299028250,5,32,0
+Female,6699022,4,HR,True,High School,80952124,4,41,2
+Female,6776431,13,Marketing,True,High School,81785342,3,37,2
+Male,7063321,0,Operations,True,Master,85290125,1,49,2
+Female,7319629,11,Finance,False,Bachelor,88371745,2,39,2
+Male,21877475,4,HR,False,Master,265758310,3,39,3
+Male,13701370,6,Marketing,True,Master,166174823,1,34,2
+Female,28251495,15,IT,False,Bachelor,343173693,4,37,0
+Female,9035918,19,Finance,False,Bachelor,109330782,1,41,0
+Female,9945386,0,Operations,True,Bachelor,120190518,4,22,2
+Female,12660918,2,Marketing,False,Bachelor,153600312,3,24,1
+Female,7976203,9,Operations,True,Bachelor,96427212,2,45,3
+Male,21151102,17,IT,False,Master,255652196,2,39,2
+Male,8994212,13,IT,False,Bachelor,108658405,1,36,2
+Female,13723493,16,Finance,False,Master,165665493,2,38,2
+Male,18070687,15,Sales,False,Bachelor,218349586,4,41,1
+Male,27750171,10,IT,True,Bachelor,335554478,5,32,1
+Male,21484041,8,Marketing,False,Bachelor,260400745,4,30,1
+Male,19108236,13,Sales,True,Bachelor,230552921,5,39,3
+Female,7906183,6,HR,True,Bachelor,95498354,3,28,0
+Female,7391778,17,Operations,False,High School,89683053,2,42,3
+Female,12167407,0,Sales,False,Bachelor,146899817,5,22,1
+Male,5944561,5,Operations,False,High School,71874724,2,48,0
+Male,19049938,1,Sales,True,Bachelor,231224705,4,42,0
+Male,7795745,0,HR,False,Bachelor,94125382,3,40,1
+Male,11778011,16,IT,False,Bachelor,142130515,2,47,1
+Female,16718688,3,HR,True,PhD,202356452,3,54,3
+Female,6728298,0,IT,True,Bachelor,81326403,2,48,1
+Female,15480087,0,IT,True,Bachelor,187474794,4,22,0
+Male,8110357,3,Operations,True,Bachelor,98397628,1,25,2
+Female,12256743,9,Marketing,False,Bachelor,147967610,4,31,1
+Female,5755008,16,HR,False,High School,69706169,2,38,1
+Female,16653019,12,Sales,False,Bachelor,201593051,4,43,3
+Female,4362372,8,HR,False,Bachelor,52666773,1,30,3
+Male,30346441,17,Operations,True,Bachelor,367682330,5,39,1
+Male,9949678,8,IT,False,High School,120238153,3,30,0
+Male,5196261,9,Operations,True,High School,62895049,1,31,0
+Female,6238644,1,Finance,False,Bachelor,75284240,2,23,2
+Male,18807616,6,Finance,True,PhD,227597780,2,28,1
+Male,17916513,2,Sales,False,Bachelor,216567314,5,24,3
+Male,12418616,6,Operations,True,Bachelor,150687664,2,28,0
+Male,4892490,5,Sales,True,High School,59028518,2,48,2
+Female,7103434,6,Sales,False,Bachelor,85935033,2,28,1
+Female,19589066,4,Finance,True,Bachelor,237052357,5,64,0
+Male,9442683,12,Sales,False,High School,114494897,2,42,1
+Male,14290201,11,Finance,True,Bachelor,173078425,2,39,1
+Male,21181932,7,IT,False,High School,256726056,5,29,0
+Male,16297763,15,Operations,True,High School,197690796,4,45,0
+Male,9743977,10,Sales,True,High School,118268478,2,32,0
+Male,11606119,17,Finance,True,High School,140297654,3,39,1
+Male,19494437,23,HR,False,High School,236046870,5,63,1
+Female,13209376,15,Sales,True,Bachelor,160303831,2,37,2
+Female,17571596,12,Marketing,True,Master,213478208,2,49,3
+Male,10217575,1,IT,True,Bachelor,124041940,1,30,1
+Male,14126798,3,IT,True,Bachelor,170841471,3,37,3
+Female,4667423,9,HR,False,Bachelor,56371104,1,55,0
+Male,12885479,7,Finance,False,Master,155966421,1,31,1
+Female,11209160,10,Sales,True,Bachelor,135930655,2,56,2
+Female,9737400,12,Finance,False,High School,117864714,3,45,2
+Male,18220876,10,IT,False,Bachelor,220536122,3,32,3
+Male,18275227,11,Finance,True,High School,221777934,4,44,0
+Female,8498222,15,IT,False,Bachelor,102764973,1,47,3
+Male,22194789,12,Finance,True,Bachelor,269386621,3,44,0
+Female,14592785,0,HR,False,Master,176523264,4,22,2
+Female,15095634,4,Operations,True,Bachelor,182499285,5,30,3
+Female,13368346,10,HR,False,Bachelor,161768471,4,35,2
+Male,15692827,2,HR,False,PhD,190332338,2,37,2
+Female,5261086,16,Operations,True,High School,63508358,2,44,0
+Male,22356588,17,Operations,True,Bachelor,270015664,5,39,3
+Female,21944533,2,Sales,False,Bachelor,266530179,5,24,3
+Female,6484657,10,Sales,True,Bachelor,78307383,2,41,2
+Male,22445935,22,HR,False,Bachelor,271844861,4,44,2
+Female,13860789,13,HR,False,Master,167883793,2,43,0
+Female,18731885,9,IT,False,Bachelor,226731976,4,48,1
+Male,18806839,7,IT,False,Bachelor,227901784,3,46,1
+Male,15491896,9,Sales,False,Bachelor,187152706,4,42,2
+Male,38120963,8,Marketing,False,Master,461634935,5,37,1
+Male,16136757,0,Marketing,False,PhD,195149799,2,22,1
+Male,33600615,13,Sales,False,Master,407224335,4,42,1
+Female,6236192,12,IT,True,High School,75287738,2,40,1
+Male,16741626,15,IT,False,Bachelor,202764177,2,40,2
+Male,6976501,3,Marketing,False,High School,84252930,3,25,1
+Female,10580546,5,Finance,True,Bachelor,127866722,3,27,1
+Male,11882420,0,Finance,False,High School,143535877,5,48,0
+Female,6110539,0,IT,False,Bachelor,73793651,2,37,2
+Male,19562949,19,Finance,True,Bachelor,237382965,2,44,3
+Male,4370120,1,Operations,False,High School,52816019,2,38,3
+Female,26577686,10,Sales,True,Bachelor,322744565,5,38,0
+Female,10337770,2,Sales,False,Bachelor,125575925,2,47,0
+Female,9469986,0,IT,True,Bachelor,114694915,2,32,2
+Female,3467865,16,HR,False,High School,41867083,1,38,3
+Female,8095044,11,Marketing,False,Bachelor,97899109,2,33,1
+Male,38523784,7,IT,True,Master,467362684,4,33,0
+Male,7999235,0,Finance,False,High School,96735270,3,34,3
+Female,7441914,7,Marketing,False,High School,89807764,4,40,2
+Female,7640232,11,HR,True,Bachelor,92524054,2,33,1
+Female,19472298,0,Finance,False,Master,236316993,3,50,2
+Male,20617010,7,Operations,False,Bachelor,250118006,4,29,0
+Male,7619204,11,Finance,True,Bachelor,92007687,1,36,3
+Female,13545553,11,Operations,True,Bachelor,164179536,3,33,3
+Male,10457280,12,Marketing,True,Bachelor,126322325,2,52,3
+Female,7076421,4,Operations,True,High School,85480608,4,39,3
+Female,20289562,21,Marketing,False,Bachelor,246288225,3,48,1
+Male,8495249,1,Marketing,False,Master,102643592,1,23,1
+Female,11159349,11,Marketing,True,Bachelor,134846139,3,40,2
+Female,10917720,4,Marketing,True,Master,131668345,3,46,1
+Male,10438333,8,Marketing,True,Bachelor,126704245,1,38,0
+Female,12306234,4,Finance,False,High School,149291029,4,48,0
+Male,41887446,10,Marketing,True,Master,507527547,5,32,3
+Female,18774444,25,Finance,False,High School,227687518,4,52,0
+Male,6407694,1,Marketing,False,Bachelor,77364474,2,60,2
+Female,3288518,0,Operations,True,High School,39795175,1,34,1
+Male,12400140,11,Marketing,False,High School,149937653,4,33,1
+Male,9597889,10,HR,False,Bachelor,115831546,3,52,1
+Female,6470908,6,Marketing,False,Bachelor,78322263,1,53,0
+Male,15730857,10,Marketing,False,Bachelor,191017697,2,32,1
+Male,11939748,7,Operations,True,Bachelor,144036407,4,33,3
+Female,4232020,13,Sales,True,High School,51149173,1,35,3
+Female,6638685,2,Operations,False,High School,80186543,4,24,3
+Female,4492614,6,HR,True,Bachelor,54277215,1,28,0
+Female,13969811,5,Sales,True,Bachelor,169618079,3,27,1
+Male,13056272,7,IT,True,Bachelor,158008651,2,30,0
+Male,15627085,15,IT,True,Bachelor,189118466,2,37,1
+Male,16500114,14,HR,False,Master,200120837,2,40,2
+Female,6482415,22,Operations,True,Bachelor,78268058,1,53,2
+Female,16135661,6,Finance,False,Bachelor,195303683,4,28,0
+Female,8372277,12,HR,False,Bachelor,101293656,2,47,3
+Female,9091791,5,Sales,True,Bachelor,110135428,2,35,0
+Male,37510452,15,Sales,True,Bachelor,455750498,5,37,3
+Male,41341403,6,Marketing,False,Master,501440228,5,44,1
+Male,11507230,4,IT,True,Bachelor,139189243,2,26,3
+Female,13175258,13,Sales,False,Master,159874901,1,41,3
+Male,9812877,9,HR,False,Master,118494059,2,39,1
+Female,10400396,13,Sales,True,Master,125457290,2,42,2
+Male,12281760,1,HR,False,Master,148344014,3,40,1
+Male,16832888,4,Finance,False,Bachelor,203520339,4,62,0
+Male,10359562,9,Marketing,True,Bachelor,125412363,2,31,0
+Female,14768450,6,IT,False,Bachelor,178925112,3,32,0
+Female,8837344,3,Sales,False,Bachelor,107302628,2,31,0
+Male,13248968,10,HR,True,Bachelor,160390507,3,32,0
+Male,18089057,9,Operations,False,Bachelor,218970111,4,31,2
+Female,15702461,17,IT,False,Bachelor,189442684,4,49,2
+Male,23762862,19,Finance,False,Bachelor,286654779,5,52,3
+Female,3656858,5,HR,False,High School,44283103,1,32,0
+Female,9552381,0,Marketing,False,Bachelor,115578423,3,29,1
+Male,26484197,20,Marketing,True,High School,321399667,5,42,0
+Male,18971191,9,Finance,False,Master,229066908,3,32,2
+Female,15610804,9,Finance,True,Bachelor,188301380,5,44,0
+Male,15397485,18,Marketing,False,High School,186315935,4,40,2
+Male,4269301,0,Sales,True,High School,51579018,2,22,3
+Female,16145889,15,Sales,True,Bachelor,194791517,5,53,3
+Female,17850367,29,HR,True,Bachelor,216439517,3,55,3
+Female,7986162,6,Operations,False,Bachelor,96393321,3,31,2
+Female,4483994,12,HR,True,High School,54322460,1,34,0
+Male,16529384,12,Operations,False,Bachelor,199762473,4,40,0
+Male,14622347,14,Finance,True,Bachelor,176573827,3,41,1
+Female,13804165,22,IT,True,Bachelor,166950023,2,44,2
+Female,9838054,16,HR,True,Bachelor,119356551,2,58,1
+Male,22238694,14,HR,False,Bachelor,268983418,5,36,3
+Female,4895501,8,Operations,True,High School,59370527,1,30,0
+Male,13027728,2,Finance,True,PhD,157261531,2,24,2
+Male,22858779,5,Finance,True,Bachelor,277266689,4,30,1
+Male,5561561,3,Operations,True,Bachelor,67191020,1,37,1
+Male,16354583,0,Finance,False,High School,198233334,5,55,1
+Male,27479466,10,Marketing,False,Bachelor,332801623,5,32,0
+Male,8463640,3,Sales,True,High School,102779253,2,40,0
+Male,18666424,10,Marketing,False,Bachelor,225767766,4,37,0
+Female,10880982,9,IT,False,PhD,131289437,1,49,2
+Female,4450141,14,HR,True,Bachelor,53676372,1,63,0
+Female,12268816,10,IT,False,High School,148874932,3,32,2
+Female,5820068,11,HR,False,High School,70464879,2,33,1
+Male,12968823,7,Sales,True,Bachelor,157308865,2,48,1
+Male,5215448,10,Finance,True,High School,63008339,1,44,3
+Female,4698645,14,Marketing,False,High School,56811587,1,56,0
+Male,9722120,10,Operations,False,Master,117275107,2,43,1
+Female,11812263,12,Marketing,True,Bachelor,143478057,2,34,0
+Male,12515263,15,Sales,True,Bachelor,151686340,2,43,2
+Female,25804026,17,IT,True,Master,313363793,2,49,1
+Male,9458952,17,Operations,False,High School,114300979,3,46,0
+Female,58800985,21,Finance,False,PhD,712375798,5,43,1
+Female,9900572,13,Sales,False,Bachelor,120005476,2,48,1
+Female,12118418,1,Operations,True,Master,146494459,3,49,0
+Male,26579853,15,Sales,False,Bachelor,322581862,4,51,1
+Female,14300116,6,Sales,False,Master,173678405,2,44,1
+Female,51055183,7,Finance,True,PhD,619791386,5,36,1
+Female,18203334,16,HR,True,Bachelor,220743021,4,39,1
+Female,30239103,21,Operations,False,PhD,365438707,4,50,2
+Female,18597433,7,Finance,False,Bachelor,224756402,5,29,1
+Male,14427753,14,Sales,False,Bachelor,175249622,2,41,3
+Female,7689517,12,Finance,False,Bachelor,92742692,2,34,1
+Female,22004479,13,HR,True,Bachelor,266792084,5,38,0
+Female,23169457,28,Marketing,False,High School,280896352,5,50,3
+Male,29719558,16,Operations,False,Bachelor,360083414,5,39,2
+Male,17164688,0,HR,False,Bachelor,208535679,4,38,3
+Female,15804357,2,IT,False,Master,191044160,3,24,3
+Female,13494628,15,Operations,False,Master,163158115,2,45,3
+Male,8059677,22,HR,True,Bachelor,97256964,2,44,0
+Female,9244995,17,Sales,False,Bachelor,111863069,2,59,0
+Male,12172270,10,Operations,True,Bachelor,147083555,3,34,0
+Male,11747916,2,Operations,True,High School,142042933,5,40,2
+Male,10851492,10,Finance,True,High School,131684064,2,40,0
+Male,11518552,5,Sales,True,Bachelor,139883525,2,53,0
+Female,6176542,7,IT,False,Bachelor,74592343,1,37,3
+Male,20475637,16,Marketing,False,PhD,247622644,2,40,0
+Female,29534083,22,HR,False,Bachelor,358649403,5,44,1
+Female,6154639,15,Finance,False,Bachelor,74259183,1,39,0
+Female,6408987,2,HR,True,Bachelor,77345657,3,33,2
+Female,6774535,15,IT,False,High School,81800147,2,39,2
+Male,24571860,21,IT,True,Bachelor,297652925,3,48,1
+Female,8055347,5,Operations,True,Bachelor,97256574,3,27,2
+Female,15420074,10,IT,False,Bachelor,187309595,2,39,2
+Male,9418111,8,HR,True,Bachelor,113961067,2,30,3
+Female,13677897,5,Sales,True,PhD,165572811,2,49,1
+Female,7758953,0,Sales,False,Master,93745216,2,22,3
+Female,9055451,10,Operations,False,Bachelor,109592567,2,32,3
+Female,8892068,15,Marketing,True,Bachelor,107768060,1,41,0
+Female,13871424,4,HR,False,Bachelor,168227164,4,53,1
+Male,6524389,8,HR,False,High School,79126798,2,37,0
+Female,20310534,10,IT,False,Bachelor,246001394,4,32,0
+Female,4958000,9,HR,True,High School,60197023,1,56,3
+Male,12775922,1,Finance,False,Bachelor,155017501,2,23,2
+Male,7906716,0,Marketing,False,Bachelor,95893713,1,22,1
+Male,6162625,13,IT,False,High School,74352098,2,42,2
+Female,17581176,10,Finance,False,PhD,212039865,3,32,3
+Female,8420930,0,Operations,True,Master,101717426,2,27,3
+Male,21521836,0,Sales,True,Bachelor,260838564,5,45,3
+Female,10978763,0,Operations,False,Bachelor,132810181,4,40,3
+Male,11531285,10,Sales,True,Master,139484920,1,32,3
+Female,6485107,3,Operations,False,High School,78726688,2,25,3
+Female,14704259,24,HR,True,Master,178518536,1,46,2
+Female,8618990,7,Finance,False,High School,104650274,2,44,0
+Male,13861545,13,Sales,False,Master,167561807,2,37,2
+Male,18324280,24,IT,True,Bachelor,222130495,2,56,1
+Male,12547204,5,Finance,True,Master,151626021,2,27,2
+Male,9167695,0,IT,False,Master,110719672,1,22,3
+Female,12028343,9,Finance,False,High School,145261690,5,31,2
+Female,9335230,15,Finance,True,Bachelor,112870302,2,37,0
+Female,18707574,16,Operations,True,PhD,226337254,2,40,1
+Female,10799789,13,Sales,False,Bachelor,131053122,2,35,2
+Female,12650509,7,Sales,False,Master,152701640,3,41,0
+Female,9071458,3,Finance,True,Bachelor,110001799,2,25,2
+Female,6263267,11,HR,False,Bachelor,75834577,1,52,1
+Female,15445684,10,HR,True,Bachelor,186675225,5,37,2
+Male,11661906,8,IT,True,High School,141159835,3,49,3
+Male,15114426,17,IT,True,Master,182687988,1,41,2
+Male,10336625,19,Operations,True,Bachelor,125214230,1,42,0
+Female,7795235,12,Finance,True,Bachelor,94314906,1,43,2
+Female,11228595,20,IT,False,Bachelor,135582999,2,42,0
+Male,6213784,2,IT,True,Bachelor,75003433,1,44,1
+Female,15234704,10,Marketing,True,Master,184480117,2,51,2
+Female,16751051,6,Finance,True,PhD,203378148,1,39,1
+Male,12750798,0,Operations,False,Bachelor,154169340,4,45,1
+Male,31945777,11,IT,True,Master,387373533,3,37,2
+Female,25171344,11,Operations,True,Master,305058553,4,52,0
+Female,8674684,9,Sales,False,Bachelor,105343974,1,31,1
+Female,31250678,17,Operations,False,PhD,379192235,3,56,1
