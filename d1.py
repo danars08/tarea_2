@@ -1,176 +1,130 @@
-# This is an ANALYTICAL dashboard because it supports exploration 
-# of structural salary differences across gender, education, sector, and experience.
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import numpy as np
 
-st.set_page_config(layout="wide")
+st.set_page_config(page_title="Salud Mental en Adultos Mayores", layout="wide")
 
-# -----------------------
-# LOAD DATA
-# -----------------------
-df = pd.read_csv("colombia_salary_gap_analysis(in).csv")
+st.title("Análisis Geográfico y de Género del Malestar Mental Frecuente")
 
-# Clean column names
-df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+st.markdown("""
+Este dashboard analiza la prevalencia de malestar mental frecuente en adultos mayores 
+en los estados de EE.UU., utilizando datos públicos del CDC.
+""")
 
-# Try to standardize common variable names (adjust if needed)
-possible_salary_cols = [col for col in df.columns if "salary" in col or "salario" in col]
-possible_gender_cols = [col for col in df.columns if "gender" in col or "genero" in col]
-possible_exp_cols = [col for col in df.columns if "experience" in col or "experiencia" in col]
-possible_sector_cols = [col for col in df.columns if "sector" in col]
-possible_edu_cols = [col for col in df.columns if "education" in col or "educacion" in col]
+@st.cache_data
+def load_data():
+    df = pd.read_csv("Alzheimer_Data.csv")
+    return df
 
-salary_col = possible_salary_cols[0]
-gender_col = possible_gender_cols[0]
+df = load_data()
 
-exp_col = possible_exp_cols[0] if possible_exp_cols else None
-sector_col = possible_sector_cols[0] if possible_sector_cols else None
-edu_col = possible_edu_cols[0] if possible_edu_cols else None
+# -----------------------------
+# LIMPIEZA DE DATOS
+# -----------------------------
 
-# Ensure salary numeric
-df[salary_col] = pd.to_numeric(df[salary_col], errors="coerce")
-df = df.dropna(subset=[salary_col])
+# Convertir coma decimal a punto
+df["Data_Value"] = df["Data_Value"].astype(str).str.replace(",", ".")
+df["Data_Value"] = pd.to_numeric(df["Data_Value"], errors="coerce")
 
-# -----------------------
-# TITLE
-# -----------------------
-st.title("Colombia Gender Salary Gap Dashboard")
-st.markdown(
-    "This analytical dashboard helps policymakers and labor analysts explore structural salary differences across gender, sector, education, and experience in Colombia."
+# Filtrar solo lo relevante
+df = df[
+    (df["Class"] == "Mental Health") &
+    (df["Topic"] == "Frequent mental distress") &
+    (df["Data_Value_Type"] == "Percentage") &
+    (df["StratificationCategory1"] == "Sex")
+]
+
+# Eliminar regiones agregadas (LocationID > 1000 suelen ser regiones)
+df = df[df["LocationID"] < 100]
+
+# -----------------------------
+# FILTROS INTERACTIVOS
+# -----------------------------
+
+st.sidebar.header("Filtros")
+
+anio = st.sidebar.selectbox(
+    "Seleccionar año",
+    sorted(df["YearStart"].unique())
 )
 
-# -----------------------
-# SIDEBAR FILTERS
-# -----------------------
-st.sidebar.header("Filters")
-
-selected_genders = st.sidebar.multiselect(
-    "Select Gender",
-    df[gender_col].unique(),
-    default=df[gender_col].unique()
+sexo = st.sidebar.selectbox(
+    "Seleccionar género",
+    df["Stratification1"].unique()
 )
 
-if sector_col:
-    selected_sectors = st.sidebar.multiselect(
-        "Select Sector",
-        df[sector_col].unique(),
-        default=df[sector_col].unique()
-    )
-else:
-    selected_sectors = None
+df_filtrado = df[
+    (df["YearStart"] == anio) &
+    (df["Stratification1"] == sexo)
+]
 
-filtered = df[df[gender_col].isin(selected_genders)]
+# -----------------------------
+# MAPA DE CALOR
+# -----------------------------
 
-if sector_col and selected_sectors:
-    filtered = filtered[filtered[sector_col].isin(selected_sectors)]
+st.subheader("Mapa de prevalencia por estado")
 
-# -----------------------
-# KPI SECTION
-# -----------------------
-st.subheader("Key Indicators")
-
-col1, col2, col3 = st.columns(3)
-
-male_avg = filtered[filtered[gender_col] == "Male"][salary_col].mean()
-female_avg = filtered[filtered[gender_col] == "Female"][salary_col].mean()
-
-gap = None
-if male_avg and female_avg:
-    gap = ((male_avg - female_avg) / male_avg) * 100
-
-with col1:
-    st.metric("Average Male Salary", f"${male_avg:,.0f}" if male_avg else "N/A")
-
-with col2:
-    st.metric("Average Female Salary", f"${female_avg:,.0f}" if female_avg else "N/A")
-
-with col3:
-    st.metric("Gender Pay Gap (%)", f"{gap:.2f}%" if gap else "N/A")
-
-st.divider()
-
-# -----------------------
-# CHART 1 — Boxplot
-# -----------------------
-st.subheader("Salary Distribution by Gender")
-
-fig1 = px.box(
-    filtered,
-    x=gender_col,
-    y=salary_col,
-    color=gender_col,
-    color_discrete_sequence=px.colors.qualitative.Set2
+fig_mapa = px.choropleth(
+    df_filtrado,
+    locations="LocationAbbr",
+    locationmode="USA-states",
+    color="Data_Value",
+    scope="usa",
+    color_continuous_scale="Reds",
+    labels={"Data_Value": "Prevalencia (%)"},
+    title="Prevalencia de malestar mental frecuente"
 )
 
-st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig_mapa, use_container_width=True)
 
-# -----------------------
-# CHART 2 — Gap by Sector
-# -----------------------
-if sector_col:
-    st.subheader("Average Salary by Sector and Gender")
+# -----------------------------
+# RANKING DE ESTADOS
+# -----------------------------
 
-    sector_avg = (
-        filtered
-        .groupby([sector_col, gender_col])[salary_col]
-        .mean()
-        .reset_index()
-    )
+st.subheader("Ranking de estados")
 
-    fig2 = px.bar(
-        sector_avg,
-        x=sector_col,
-        y=salary_col,
-        color=gender_col,
-        barmode="group",
-        color_discrete_sequence=px.colors.qualitative.Set2
-    )
+ranking = df_filtrado.sort_values("Data_Value", ascending=False)
 
-    st.plotly_chart(fig2, use_container_width=True)
+fig_bar = px.bar(
+    ranking,
+    x="LocationDesc",
+    y="Data_Value",
+    labels={"Data_Value": "Prevalencia (%)", "LocationDesc": "Estado"},
+)
 
-# -----------------------
-# CHART 3 — Experience vs Salary
-# -----------------------
-if exp_col:
-    st.subheader("Experience vs Salary")
+st.plotly_chart(fig_bar, use_container_width=True)
 
-    fig3 = px.scatter(
-        filtered,
-        x=exp_col,
-        y=salary_col,
-        color=gender_col,
-        trendline="ols",
-        color_discrete_sequence=px.colors.qualitative.Set2
-    )
+# -----------------------------
+# COMPARACIÓN POR GÉNERO
+# -----------------------------
 
-    st.plotly_chart(fig3, use_container_width=True)
+st.subheader("Comparación hombres vs mujeres")
 
-# -----------------------
-# CHART 4 — Education Impact
-# -----------------------
-if edu_col:
-    st.subheader("Salary by Education Level and Gender")
+df_genero = df[df["YearStart"] == anio]
 
-    edu_avg = (
-        filtered
-        .groupby([edu_col, gender_col])[salary_col]
-        .mean()
-        .reset_index()
-    )
+fig_genero = px.bar(
+    df_genero,
+    x="LocationDesc",
+    y="Data_Value",
+    color="Stratification1",
+    barmode="group",
+    labels={"Data_Value": "Prevalencia (%)", "LocationDesc": "Estado"}
+)
 
-    fig4 = px.bar(
-        edu_avg,
-        x=edu_col,
-        y=salary_col,
-        color=gender_col,
-        barmode="group",
-        color_discrete_sequence=px.colors.qualitative.Set2
-    )
+st.plotly_chart(fig_genero, use_container_width=True)
 
-    st.plotly_chart(fig4, use_container_width=True)
+# -----------------------------
+# DOCUMENTACIÓN
+# -----------------------------
 
 st.markdown("---")
-st.caption("Dashboard built with Streamlit | Analytical exploration of structural wage inequality in Colombia.")
+st.markdown("""
+### Fuente de datos
+
+Fuente: Centers for Disease Control and Prevention (CDC)  
+Dataset: Healthy Aging Data Portal  
+Fecha de descarga: Febrero 2026  
+Licencia: Datos públicos del gobierno de EE.UU.
+
+Para actualizar el dashboard, se debe descargar la versión más reciente del dataset desde el portal del CDC y reemplazar el archivo CSV.
+""")
