@@ -1,132 +1,126 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import re
 
-st.set_page_config(page_title="Deterioro Cognitivo en Adultos Mayores", layout="wide")
+# Configuración de la página
+st.set_page_config(page_title="Dashboard Alzheimer & Aging", layout="wide")
 
-st.title("Dificultades Funcionales Asociadas al Deterioro Cognitivo Subjetivo")
-
-st.markdown("""
-Este dashboard analiza la prevalencia de dificultades funcionales asociadas 
-al deterioro cognitivo subjetivo en adultos mayores en los estados de EE.UU.
-""")
-
-# -----------------------------
-# CARGA DE DATOS
-# -----------------------------
+# Función para extraer coordenadas de la columna Geolocation
+def extract_coords(point_str):
+    """Extrae lat y lon del formato 'POINT (lon lat)'"""
+    try:
+        if pd.isna(point_str): return None, None
+        # Busca números (incluyendo negativos y decimales)
+        coords = re.findall(r"[-+]?\d*\.\d+|\d+", str(point_str))
+        if len(coords) >= 2:
+            # En el formato POINT, el primero suele ser Longitud y el segundo Latitud
+            return float(coords[1]), float(coords[0]) 
+    except:
+        return None, None
+    return None, None
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("Alzheimer's_Disease_and_Healthy_Aging_Data_20260221.csv", sep=";")
+    # Nombre exacto de tu archivo
+    file_path = "Alzheimer's_Disease_and_Healthy_Aging_Data_20260221.csv"
+    df = pd.read_csv(file_path)
+    
+    # 1. Limpieza de Data_Value (manejo de comas y conversión a número)
+    if df['Data_Value'].dtype == 'object':
+        df['Data_Value'] = df['Data_Value'].astype(str).str.replace(',', '.')
+        df['Data_Value'] = pd.to_numeric(df['Data_Value'], errors='coerce')
+    
+    # 2. Procesar Geolocalización para el mapa
+    if 'Geolocation' in df.columns:
+        df['lat'], df['lon'] = zip(*df['Geolocation'].map(extract_coords))
+    
+    # 3. Limpiar límites de confianza por si acaso
+    for col in ['Low_Confidence_Limit', 'High_Confidence_Limit']:
+        if df[col].dtype == 'object':
+            df[col] = pd.to_numeric(df[col].astype(str).str.replace(',', '.'), errors='coerce')
+            
     return df
 
-df = load_data()
+try:
+    df = load_data()
 
-# -----------------------------
-# LIMPIEZA
-# -----------------------------
+    st.title("🧠 Dashboard de Salud Cognitiva y Envejecimiento")
+    st.markdown("Análisis interactivo de datos basados en el dataset de Alzheimer y Envejecimiento Saludable.")
 
-df["Data_Value"] = df["Data_Value"].astype(str).str.replace(",", ".")
-df["Data_Value"] = pd.to_numeric(df["Data_Value"], errors="coerce")
+    # --- BARRA LATERAL ---
+    st.sidebar.header("Configuración de Filtros")
+    
+    all_states = sorted(df['LocationDesc'].unique())
+    estados = st.sidebar.multiselect(
+        "Selecciona Estados:",
+        options=all_states,
+        default=["Florida", "Illinois", "Georgia", "Arizona"] # Algunos de tus ejemplos
+    )
 
-df["LocationID"] = pd.to_numeric(df["LocationID"], errors="coerce")
+    all_topics = df['Topic'].unique()
+    tema = st.sidebar.selectbox("Selecciona un Tema:", options=all_topics)
 
-# Solo porcentaje y sexo
-df = df[
-    (df["Data_Value_Type"] == "Percentage") &
-    (df["StratificationCategory1"] == "Sex")
-]
+    # Filtrado dinámico
+    df_filtered = df[(df['LocationDesc'].isin(estados)) & (df['Topic'] == tema)]
 
-# Solo estados reales
-df = df[df["LocationID"] < 100]
+    # --- MÉTRICAS ---
+    col1, col2, col3 = st.columns(3)
+    val_medio = df_filtered['Data_Value'].mean()
+    col1.metric("Prevalencia Media", f"{val_medio:.1f}%" if not pd.isna(val_medio) else "N/A")
+    col2.metric("Registros filtrados", len(df_filtered))
+    col3.metric("Estados en vista", len(estados))
 
-# -----------------------------
-# FILTROS
-# -----------------------------
+    st.divider()
 
-st.sidebar.header("Filtros")
+    # --- MAPA DE CALOR ---
+    st.subheader("📍 Mapa de Calor de Prevalencia")
+    df_map = df_filtered.dropna(subset=['lat', 'lon', 'Data_Value'])
+    
+    if not df_map.empty:
+        fig_map = px.density_mapbox(
+            df_map, 
+            lat='lat', lon='lon', z='Data_Value', 
+            radius=30,
+            center=dict(lat=37.09, lon=-95.71), 
+            zoom=3,
+            mapbox_style="carto-positron",
+            color_continuous_scale="Viridis",
+            title=f"Distribución de: {tema}"
+        )
+        fig_map.update_layout(height=500, margin={"r":0,"t":40,"l":0,"b":0})
+        st.plotly_chart(fig_map, use_container_width=True)
+    else:
+        st.warning("No hay datos de coordenadas para los filtros seleccionados.")
 
-anio = st.sidebar.selectbox(
-    "Seleccionar año",
-    sorted(df["YearStart"].dropna().unique())
-)
+    # --- GRÁFICOS INFERIORES ---
+    c1, c2 = st.columns(2)
 
-sexo = st.sidebar.selectbox(
-    "Seleccionar género",
-    sorted(df["Stratification1"].unique())
-)
+    with c1:
+        st.subheader("Desglose por Estratificación")
+        fig_bar = px.bar(
+            df_filtered, 
+            x='Stratification1', y='Data_Value', color='LocationDesc',
+            barmode='group',
+            labels={'Data_Value': '%', 'Stratification1': 'Categoría'}
+        )
+        st.plotly_chart(fig_bar, use_container_width=True)
 
-df_filtrado = df[
-    (df["YearStart"] == anio) &
-    (df["Stratification1"] == sexo)
-]
+    with c2:
+        st.subheader("Datos en el tiempo / Rango de Confianza")
+        fig_box = px.box(
+            df_filtered, 
+            x='LocationAbbr', y='Data_Value', 
+            points="all", 
+            color='LocationAbbr',
+            title="Variación de valores por Estado"
+        )
+        st.plotly_chart(fig_box, use_container_width=True)
 
-# -----------------------------
-# MAPA
-# -----------------------------
+    # --- TABLA ---
+    with st.expander("Ver tabla de datos completa"):
+        st.write(df_filtered)
 
-st.subheader("Mapa de prevalencia por estado")
-
-fig_mapa = px.choropleth(
-    df_filtrado,
-    locations="LocationID",
-    locationmode="USA-states",
-    color="Data_Value",
-    scope="usa",
-    color_continuous_scale="Reds",
-    labels={"Data_Value": "Prevalencia (%)"},
-)
-
-st.plotly_chart(fig_mapa, use_container_width=True)
-
-# -----------------------------
-# RANKING
-# -----------------------------
-
-st.subheader("Ranking de estados")
-
-ranking = df_filtrado.sort_values("Data_Value", ascending=False)
-
-fig_bar = px.bar(
-    ranking,
-    x="LocationDesc",
-    y="Data_Value",
-    labels={"Data_Value": "Prevalencia (%)", "LocationDesc": "Estado"},
-)
-
-st.plotly_chart(fig_bar, use_container_width=True)
-
-# -----------------------------
-# COMPARACIÓN POR GÉNERO
-# -----------------------------
-
-st.subheader("Comparación hombres vs mujeres")
-
-df_genero = df[df["YearStart"] == anio]
-
-fig_genero = px.bar(
-    df_genero,
-    x="LocationDesc",
-    y="Data_Value",
-    color="Stratification1",
-    barmode="group",
-    labels={"Data_Value": "Prevalencia (%)", "LocationDesc": "Estado"},
-)
-
-st.plotly_chart(fig_genero, use_container_width=True)
-
-# -----------------------------
-# DOCUMENTACIÓN
-# -----------------------------
-
-st.markdown("---")
-st.markdown("""
-### Fuente de datos
-
-Fuente: CDC Healthy Aging Data Portal  
-Indicador: Functional difficulties associated with subjective cognitive decline  
-Fecha de descarga: Febrero 2026  
-Licencia: Datos públicos del gobierno de EE.UU.
-
-Para actualizar el dashboard, descargar la versión más reciente del dataset y reemplazar el archivo CSV.
-""")
+except Exception as e:
+    st.error(f"Error: {e}")
+    st.info(f"Asegúrate de que el archivo '{file_path}' esté en la misma carpeta.")
