@@ -13,9 +13,7 @@ st.set_page_config(
 # Estilo formal personalizado mediante CSS
 st.markdown("""
     <style>
-    .main {
-        background-color: #F5F7F9;
-    }
+    .main { background-color: #F5F7F9; }
     .stMetric {
         background-color: #FFFFFF;
         padding: 15px;
@@ -77,7 +75,7 @@ if df is not None:
     st.title("Informe Nacional: Salud Cognitiva y Envejecimiento")
     
     # Barra lateral - Información de Autoría y Filtros
-    st.sidebar.markdown("### Autoras")
+    st.sidebar.markdown("### Integrantes del Proyecto")
     st.sidebar.markdown("""
     * Valentina Torres
     * Melanie Paola Perez 
@@ -114,11 +112,12 @@ if df is not None:
     st.divider()
 
     # --- ESTRUCTURA DE CONTENIDO ---
-    tab1, tab2, tab3, tab4 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Distribución Geográfica", 
         "Ranking de Estados", 
         "Análisis por Género", 
-        "Repositorio de Datos"
+        "Repositorio de Datos",
+        "Documentación y QUEST"
     ])
 
     with tab1:
@@ -176,14 +175,54 @@ if df is not None:
         st.subheader("Explorador de Datos del Informe")
         st.dataframe(df_mapa, use_container_width=True)
 
+    with tab5:
+        st.header("Metodología y Sostenibilidad de Datos")
+        
+        st.subheader("1. Fuente de Datos Oficial")
+        st.markdown("""
+        **Origen:** Centers for Disease Control and Prevention (CDC).  
+        **Dataset:** Alzheimer's Disease and Healthy Aging Data.  
+        **URL:** [Portal de Datos del CDC](https://data.cdc.gov/Healthy-Aging/Alzheimer-s-Disease-and-Healthy-Aging-Data/hfr9-rurv/about_data)  
+        **Fecha de acceso:** Febrero 2026.
+        """)
+
+        st.subheader("2. Framework QUEST Aplicado")
+        st.info("""
+        * **Question (Pregunta):** ¿Cómo impacta el deterioro cognitivo a los diferentes estados y géneros en EE.UU.?
+        * **Understand (Entender):** Análisis de variables demográficas y métricas de salud pública del BRFSS.
+        * **Explore (Explorar):** Identificación de valores atípicos mediante rankings y mapas de calor geográficos.
+        * **Synthesize (Sintetizar):** Correlación entre la edad avanzada y la disparidad de género en los reportes de salud.
+        * **Tell (Comunicar):** Visualización orientada a la toma de decisiones para audiencias no técnicas.
+        """)
+
+        st.subheader("3. Diccionario de Variables (API Fields)")
+        st.markdown("""
+        | Campo API | Descripción | Tipo de Dato |
+        | :--- | :--- | :--- |
+        | **LocationDesc** | Descripción completa de la ubicación geográfica (Estado). | Texto |
+        | **Topic** | Descripción del tema de salud analizado. | Texto |
+        | **Question** | La pregunta específica realizada en la encuesta. | Texto |
+        | **Data_Value** | Valor numérico del indicador de salud (Prevalencia %). | Número |
+        | **Stratification1** | Categoría de estratificación primaria (ej. Grupo de Edad). | Texto |
+        | **Stratification2** | Categoría de estratificación secundaria (ej. Género). | Texto |
+        | **Geolocation** | Coordenadas para la representación en mapas. | Geográfico |
+        """)
+
+        st.subheader("4. Guía de Actualización (Sostenibilidad)")
+        st.write("""
+        Para mantener este dashboard vigente, se debe descargar el archivo .CSV actualizado desde el portal Open Data del CDC. 
+        El script está diseñado para detectar automáticamente la estructura de columnas siempre que se respeten los nombres 
+        de los campos API mencionados arriba. Al reemplazar el archivo en el repositorio, las métricas se recalcularán automáticamente.
+        """)
+
     # Pie de página formal
     st.divider()
     st.markdown("""
         <div style="text-align: center; color: #6B7280; font-size: 0.8em;">
             Informe Técnico - Alzheimer’s Disease and Healthy Aging Data<br>
-            Elaborado por: Torres Lugo, Perez Sujano, Sojo Jemeniz.
+            Elaborado por: Torres Lugo, Perez Sujano, Sojo Jemeniz, Ramirez.
         </div>
         """, unsafe_allow_html=True)
 
 else:
-    st.error("No se pudo cargar el recurso de datos. Verifique la integridad del archivo CSV.")
+    st.error("Error al cargar el recurso de datos. Verifique la integridad del archivo CSV.")
