@@ -1,3 +1,5 @@
-Streamlit
-plotly
+streamlit
 pandas
+plotly
+numpy
+statsmodels
