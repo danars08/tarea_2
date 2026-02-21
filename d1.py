@@ -21,9 +21,9 @@ def extract_coords(point_str):
 
 @st.cache_data
 def load_data():
+    # Asegúrate de que el nombre coincida con tu archivo
     file_path = "Alzheimer's_Disease_and_Healthy_Aging_Data_20260221.csv"
     try:
-        # Detectar delimitador automáticamente
         df = pd.read_csv(file_path, sep=None, engine='python', on_bad_lines='skip')
         
         # Limpieza de valores numéricos
@@ -50,82 +50,84 @@ df = load_data()
 if df is not None:
     st.title("🧠 Dashboard: Salud Cognitiva y Envejecimiento")
 
-    # --- VALIDACIÓN DE COLUMNAS (Para evitar el KeyError) ---
-    # En tu dataset, la edad suele estar en 'Stratification1' cuando 'StratificationCategory1' es 'Age Group'
-    col_edad = 'Stratification1' if 'Stratification1' in df.columns else 'Age Group'
-    col_tema = 'Topic' if 'Topic' in df.columns else 'Question'
-
     # --- BARRA LATERAL ---
     st.sidebar.header("⚙️ Configuración Global")
     
-    # Filtro de Tema
+    col_tema = 'Topic' if 'Topic' in df.columns else 'Question'
     temas = sorted(df[col_tema].dropna().unique())
     tema_sel = st.sidebar.selectbox("1. Selecciona el Tema:", temas)
 
-    # Filtro de Edad (Buscamos los valores de edad en Stratification1)
-    # Filtramos el dataframe para obtener solo los valores que pertenecen a la categoría de edad
+    # Filtro de Edad (Basado en Stratification1)
     df_solo_edad = df[df['StratificationCategory1'] == 'Age Group']
     edades = sorted(df_solo_edad['Stratification1'].dropna().unique())
-    
-    if not edades: # Si no encuentra nada, usa la columna general
-        edades = sorted(df[col_edad].dropna().unique())
-        
-    edad_sel = st.sidebar.selectbox("2. Grupo de Edad:", edades)
+    if not edades:
+        edades = sorted(df['Stratification1'].dropna().unique())
+    edad_sel = st.sidebar.selectbox("2. Grupo de Edad (para Mapa y Comparativa):", edades)
 
-    # Filtrado base para el mapa
-    df_mapa = df[(df[col_tema] == tema_sel) & (df[col_edad] == edad_sel)]
+    # Filtrado base
+    df_mapa = df[(df[col_tema] == tema_sel) & (df['Stratification1'] == edad_sel)]
 
     # --- PESTAÑAS ---
-    tab1, tab2, tab3 = st.tabs(["🌍 Mapa Nacional", "📊 Comparativa de Estados", "📄 Datos Detallados"])
+    tab1, tab2, tab3, tab4 = st.tabs(["🌍 Mapa Nacional", "📊 Comparativa Estados", "👫 Análisis de Género", "📄 Datos"])
 
     with tab1:
         st.subheader(f"Intensidad de: {tema_sel}")
-        
         df_geo = df_mapa.groupby(['LocationAbbr', 'LocationDesc'])['Data_Value'].mean().reset_index()
-
         if not df_geo.empty:
             fig_choropleth = px.choropleth(
-                df_geo,
-                locations='LocationAbbr',
-                locationmode="USA-states",
-                color='Data_Value',
-                scope="usa",
-                color_continuous_scale="Reds",
-                labels={'Data_Value': '% Prevalencia'},
+                df_geo, locations='LocationAbbr', locationmode="USA-states",
+                color='Data_Value', scope="usa", color_continuous_scale="Reds",
                 hover_name='LocationDesc'
             )
             fig_choropleth.update_layout(geo_scope='usa', margin={"r":0,"t":0,"l":0,"b":0}, height=500)
             st.plotly_chart(fig_choropleth, use_container_width=True)
-        else:
-            st.warning("No hay datos suficientes para generar el mapa con estos filtros.")
 
     with tab2:
         st.subheader("Comparativa entre Estados")
-        estados_sel = st.multiselect(
-            "Selecciona estados:", 
-            options=sorted(df_mapa['LocationDesc'].unique()),
-            default=sorted(df_mapa['LocationDesc'].unique())[:3] if len(df_mapa) > 0 else None
-        )
-        
+        estados_sel = st.multiselect("Selecciona estados:", 
+                                     options=sorted(df_mapa['LocationDesc'].unique()),
+                                     default=sorted(df_mapa['LocationDesc'].unique())[:3] if len(df_mapa)>0 else None)
         df_filtered = df_mapa[df_mapa['LocationDesc'].isin(estados_sel)]
-
         if not df_filtered.empty:
-            c1, c2 = st.columns(2)
-            with c1:
-                # Usamos Stratification2 para ver el desglose (Raza/Sexo) si existe
-                eje_x = 'Stratification2' if 'Stratification2' in df.columns else 'Stratification1'
-                fig_bar = px.bar(df_filtered, x=eje_x, y='Data_Value', color='LocationDesc',
-                                 barmode='group', title="Desglose por Categoría")
-                st.plotly_chart(fig_bar, use_container_width=True)
-            with c2:
-                st.write("**Tabla Comparativa**")
-                st.dataframe(df_filtered[['LocationDesc', eje_x, 'Data_Value']], use_container_width=True)
-        else:
-            st.info("Selecciona estados en el menú de arriba para comparar.")
+            fig_bar = px.bar(df_filtered, x='Stratification1', y='Data_Value', color='LocationDesc', barmode='group')
+            st.plotly_chart(fig_bar, use_container_width=True)
 
     with tab3:
+        st.subheader("👫 Prevalencia por Edad y Género")
+        st.markdown("Análisis del impacto basado en la distinción por sexo.")
+
+        # LÓGICA QUE SOLICITASTE:
+        # 1. Filtramos los datos para el tema seleccionado que tengan info de Género
+        prevalence_data = df[df[col_tema] == tema_sel]
+        
+        gender_age_summary = prevalence_data[prevalence_data['Stratification2'].isin(['Female', 'Male'])] \
+                                .groupby(['Stratification1', 'Stratification2'])['Data_Value'] \
+                                .mean().reset_index()
+
+        if not gender_age_summary.empty:
+            # Recreamos tu barplot de Seaborn pero en Plotly para que sea interactivo
+            fig_gender = px.bar(
+                gender_age_summary, 
+                x='Stratification1', 
+                y='Data_Value', 
+                color='Stratification2',
+                barmode='group',
+                color_discrete_map={'Female': 'darkorange', 'Male': 'royalblue'},
+                labels={'Data_Value': 'Prevalencia (%)', 'Stratification1': 'Grupo de Edad', 'Stratification2': 'Género'},
+                title=f'% Deterioro Cognitivo por Edad y Género ({tema_sel})'
+            )
+            fig_gender.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig_gender, use_container_width=True)
+
+            # "Display" de la tabla resumen
+            st.write("**Promedio de prevalencia por grupo de edad y género:**")
+            st.dataframe(gender_age_summary, use_container_width=True)
+        else:
+            st.warning("No hay datos de género (Male/Female) disponibles para este tema.")
+
+    with tab4:
         st.subheader("Vista de Datos")
         st.dataframe(df_mapa, use_container_width=True)
 
 else:
-    st.error("Archivo no encontrado o error en la carga.")
+    st.error("Error al cargar el dataset.")
