@@ -145,7 +145,7 @@ if df is not None:
     # ---------------- TAB 1 ----------------
     with tab1:
         st.subheader("Tendencia Temporal de la Prevalencia")
-        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Cómo ha evolucionado la prevalencia de dificultad cognitiva funcional en el tiempo para el grupo seleccionado?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box"></b> ¿Cómo ha evolucionado la prevalencia de dificultad cognitiva funcional en el tiempo para el grupo seleccionado?</div>', unsafe_allow_html=True)
 
         df_trend = (
             df_mapa.groupby("YearStart")["Data_Value"]
@@ -210,7 +210,7 @@ if df is not None:
     # ---------------- TAB 3 ----------------
     with tab3:
         st.subheader("Tasa de Prevalencia por Rango de Edad y Sexo")
-        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Existen diferencias en la prevalencia según edad y género?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box"></b> ¿Existen diferencias en la prevalencia según edad y género?</div>', unsafe_allow_html=True)
 
         gender_data = (
             df_base_tema[df_base_tema['Stratification2'].isin(['Female', 'Male'])]
@@ -238,7 +238,7 @@ if df is not None:
     # ---------------- TAB 4 ----------------
     with tab4:
         st.subheader("Distribución Geográfica de la Prevalencia")
-        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Cómo se distribuye geográficamente la prevalencia en Estados Unidos?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box"></b> ¿Cómo se distribuye geográficamente la prevalencia en Estados Unidos?</div>', unsafe_allow_html=True)
 
         df_geo = df_mapa.groupby(['LocationAbbr', 'LocationDesc'])['Data_Value'].mean().reset_index()
 
