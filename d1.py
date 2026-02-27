@@ -251,6 +251,3 @@ with tab6:
             Elaborado por: Valentina Torres, Melanie Paola Perez, Natalia Sojo y Dana Valentina Ramirez.
         </div>
         """, unsafe_allow_html=True)
-
-else:
-    st.error("Error al cargar el recurso de datos. Verifique la integridad del archivo CSV.")
