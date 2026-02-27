@@ -123,9 +123,29 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
 
 # 1️ EVOLUCIÓN TEMPORAL
 with tab1:
-    st.subheader("Evolución Temporal de la Prevalencia")
-    # (Aquí debes pegar el código que ya tienes para evolución temporal)
-
+    st.subheader("Evolución Temporal de la Tasa de Prevalencia (%)")
+            df_trend = (
+                df_mapa.groupby("YearStart")["Data_Value"]
+                .mean()
+                .reset_index()
+                .sort_values("YearStart")
+            )
+     
+            if not df_trend.empty:
+                fig_trend = px.line(
+                    df_trend,
+                    x="YearStart",
+                    y="Data_Value",
+                    markers=True,
+                    labels={
+                        "YearStart": "Año",
+                        "Data_Value": "Tasa de Prevalencia Promedio (%)"
+                    }
+                )
+     
+                fig_trend.update_traces(line=dict(color="#1E3A8A", width=3))
+                fig_trend.update_layout(xaxis=dict(dtick=1))
+                st.plotly_chart(fig_trend, use_container_width=True)
 
 # 2️ ANÁLISIS DEMOGRÁFICO
 with tab2:
