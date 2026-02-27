@@ -207,28 +207,36 @@ La prevalencia es el porcentaje de personas dentro de una población que present
                 )
                 st.plotly_chart(fig_bot, use_container_width=True)
 
-    # 3️⃣ ANÁLISIS DEMOGRÁFICO
-    with tab3:
-        st.subheader("Tasa de Prevalencia por Rango de Edad y Sexo")
+# 3️⃣ ANÁLISIS DEMOGRÁFICO
+with tab3:
+    st.subheader("Tasa de Prevalencia por Rango de Edad y Sexo")
 
-        gender_data = (
-            df[df['Sexo'].isin(['Female', 'Male'])]
-            .groupby(['Rango de edad', 'Sexo'])['Data_Value']
-            .mean()
-            .reset_index()
+    gender_data = (
+        df[df['Sexo'].isin(['Female', 'Male'])]
+        .groupby(['Rango de edad', 'Sexo'])['Data_Value']
+        .mean()
+        .reset_index()
+    )
+
+    if not gender_data.empty:
+        # Gráfico con colores personalizados
+        fig_gen = px.bar(
+            gender_data,
+            x='Rango de edad',
+            y='Data_Value',
+            color='Sexo',
+            barmode='group',
+            color_discrete_map={
+                'Female': '#EC4899',  # rosado
+                'Male': '#1E3A8A'     # azul oscuro
+            },
+            labels={'Data_Value': 'Tasa de Prevalencia Promedio (%)'}
         )
+        st.plotly_chart(fig_gen, use_container_width=True)
 
-        if not gender_data.empty:
-            fig_gen = px.bar(
-                gender_data,
-                x='Rango de edad',
-                y='Data_Value',
-                color='Sexo',
-                barmode='group',
-                labels={'Data_Value': 'Tasa de Prevalencia Promedio (%)'}
-            )
-            st.plotly_chart(fig_gen, use_container_width=True)
-            st.table(gender_data)
+        # Tabla con nombre personalizado para la tercera columna
+        gender_data_display = gender_data.rename(columns={'Data_Value': 'tasa de prevalencia promedio'})
+        st.table(gender_data_display)
 
     # 4️⃣ MAPA
     with tab4:
