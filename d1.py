@@ -168,7 +168,7 @@ if df is not None:
     # ---------------- TAB 2 ----------------
     with tab2:
         st.subheader("Comparativa de Extremos: Top 5 vs Bottom 5")
-        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Qué estados presentan los niveles más altos y más bajos de prevalencia?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box"></b> ¿Qué estados presentan los niveles más altos y más bajos de prevalencia?</div>', unsafe_allow_html=True)
 
         df_ranking = (
             df_mapa.groupby('LocationDesc')['Data_Value']
@@ -236,7 +236,7 @@ if df is not None:
             gender_data_display = gender_data.rename(columns={
                 'Stratification1': 'Rango de edad',
                 'Stratification2': 'Sexo',
-                'Data_Value': 'tasa de prevalencia promedio'
+                'Data_Value': 'Tasa de prevalencia promedio'
             })
             st.table(gender_data_display)
 
