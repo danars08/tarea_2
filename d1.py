@@ -111,109 +111,138 @@ if df is not None:
 
     st.divider()
 
-    # --- ESTRUCTURA DE CONTENIDO ---
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "Distribución Geográfica", 
-        "Ranking de Estados", 
-        "Análisis por Género", 
-        "Repositorio de Datos",
-        "Documentación y QUEST"
-    ])
+   # --- ESTRUCTURA DE CONTENIDO ---
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    "Evolución Temporal",
+    "Análisis Demográfico",
+    "Comparativo Estatal",
+    "Mapa de Prevalencia",
+    "Metodología",
+    "Base de Datos"
+])
 
-    with tab1:
-        st.subheader("Visualización Geoespacial de Prevalencia")
-        df_geo = df_mapa.groupby(['LocationAbbr', 'LocationDesc'])['Data_Value'].mean().reset_index()
-        
-        if not df_geo.empty:
-            fig_map = px.choropleth(
-                df_geo, locations='LocationAbbr', locationmode="USA-states",
-                color='Data_Value', scope="usa", color_continuous_scale="Blues",
-                labels={'Data_Value': 'Prevalencia (%)'},
-                hover_name='LocationDesc'
+# 1️ EVOLUCIÓN TEMPORAL
+with tab1:
+    st.subheader("Evolución Temporal de la Prevalencia")
+    # (Aquí debes pegar el código que ya tienes para evolución temporal)
+
+
+# 2️ ANÁLISIS DEMOGRÁFICO
+with tab2:
+    st.subheader("Análisis de Prevalencia por Edad y Género")
+    gender_data = df_base_tema[
+        df_base_tema['Stratification2'].isin(['Female', 'Male'])
+    ].groupby(['Stratification1', 'Stratification2'])['Data_Value'] \
+     .mean().reset_index()
+
+    if not gender_data.empty:
+        fig_gen = px.bar(
+            gender_data,
+            x='Stratification1',
+            y='Data_Value',
+            color='Stratification2',
+            barmode='group',
+            color_discrete_map={'Female': '#D97706', 'Male': '#2563EB'},
+            labels={'Data_Value': 'Promedio (%)', 'Stratification1': 'Edad'}
+        )
+        st.plotly_chart(fig_gen, use_container_width=True)
+        st.markdown("### Resumen Estadístico")
+        st.table(gender_data)
+
+
+# 3️ COMPARATIVO ESTATAL
+with tab3:
+    st.subheader("Comparativa de Extremos: Top 5 vs Bottom 5")
+    df_ranking = df_mapa.groupby('LocationDesc')['Data_Value'] \
+                        .mean().sort_values(ascending=False).reset_index()
+
+    if not df_ranking.empty:
+        c_top, c_bot = st.columns(2)
+
+        with c_top:
+            st.markdown("**Estados con mayor prevalencia**")
+            fig_top = px.bar(
+                df_ranking.head(5),
+                x='Data_Value',
+                y='LocationDesc',
+                orientation='h',
+                color='Data_Value',
+                color_continuous_scale='Reds'
             )
-            fig_map.update_layout(geo_scope='usa', margin={"r":0,"t":0,"l":0,"b":0})
-            st.plotly_chart(fig_map, use_container_width=True)
+            fig_top.update_layout(showlegend=False, yaxis={'categoryorder':'total ascending'})
+            st.plotly_chart(fig_top, use_container_width=True)
 
-    with tab2:
-        st.subheader("Comparativa de Extremos: Top 5 vs Bottom 5")
-        df_ranking = df_mapa.groupby('LocationDesc')['Data_Value'].mean().sort_values(ascending=False).reset_index()
-
-        if not df_ranking.empty:
-            c_top, c_bot = st.columns(2)
-            
-            with c_top:
-                st.markdown("**Estados con mayor prevalencia**")
-                fig_top = px.bar(df_ranking.head(5), x='Data_Value', y='LocationDesc', orientation='h',
-                                 color='Data_Value', color_continuous_scale='Reds')
-                fig_top.update_layout(showlegend=False, yaxis={'categoryorder':'total ascending'})
-                st.plotly_chart(fig_top, use_container_width=True)
-
-            with c_bot:
-                st.markdown("**Estados con menor prevalencia**")
-                fig_bot = px.bar(df_ranking.tail(5), x='Data_Value', y='LocationDesc', orientation='h',
-                                 color='Data_Value', color_continuous_scale='Greens')
-                fig_bot.update_layout(showlegend=False, yaxis={'categoryorder':'total descending'})
-                st.plotly_chart(fig_bot, use_container_width=True)
-
-    with tab3:
-        st.subheader("Análisis de Prevalencia por Edad y Género")
-        gender_data = df_base_tema[df_base_tema['Stratification2'].isin(['Female', 'Male'])] \
-                        .groupby(['Stratification1', 'Stratification2'])['Data_Value'] \
-                        .mean().reset_index()
-
-        if not gender_data.empty:
-            fig_gen = px.bar(
-                gender_data, x='Stratification1', y='Data_Value', color='Stratification2',
-                barmode='group', color_discrete_map={'Female': '#D97706', 'Male': '#2563EB'},
-                labels={'Data_Value': 'Promedio (%)', 'Stratification1': 'Edad'}
+        with c_bot:
+            st.markdown("**Estados con menor prevalencia**")
+            fig_bot = px.bar(
+                df_ranking.tail(5),
+                x='Data_Value',
+                y='LocationDesc',
+                orientation='h',
+                color='Data_Value',
+                color_continuous_scale='Greens'
             )
-            st.plotly_chart(fig_gen, use_container_width=True)
-            st.markdown("### Resumen Estadístico")
-            st.table(gender_data)
+            fig_bot.update_layout(showlegend=False, yaxis={'categoryorder':'total descending'})
+            st.plotly_chart(fig_bot, use_container_width=True)
 
-    with tab4:
-        st.subheader("Explorador de Datos del Informe")
-        st.dataframe(df_mapa, use_container_width=True)
 
-    with tab5:
-        st.header("Metodología y Sostenibilidad de Datos")
-        
-        st.subheader("1. Fuente de Datos Oficial")
-        st.markdown("""
-        **Origen:** Centers for Disease Control and Prevention (CDC).  
-        **Dataset:** Alzheimer's Disease and Healthy Aging Data.  
-        **URL:** [Portal de Datos del CDC](https://data.cdc.gov/Healthy-Aging/Alzheimer-s-Disease-and-Healthy-Aging-Data/hfr9-rurv/about_data)  
-        **Fecha de acceso:** Febrero 2026.
-        """)
+# 4️ MAPA DE PREVALENCIA
+with tab4:
+    st.subheader("Visualización Geoespacial de Prevalencia")
+    df_geo = df_mapa.groupby(['LocationAbbr', 'LocationDesc'])['Data_Value'] \
+                    .mean().reset_index()
 
-        st.subheader("2. Framework QUEST Aplicado")
-        st.info("""
-        * **Question:** ¿Cómo impacta el deterioro cognitivo a los diferentes estados y géneros en EE.UU.?
-        * **Understand:** Análisis de variables demográficas y métricas de salud pública.
-        * **Explore:** Identificación de valores atípicos mediante rankings y mapas de calor geográficos.
-        * **Synthesize:** Correlación entre la edad avanzada y la disparidad de género en los reportes de salud.
-        * **Tell:** Visualización orientada a la toma de decisiones para audiencias no técnicas.
-        """)
+    if not df_geo.empty:
+        fig_map = px.choropleth(
+            df_geo,
+            locations='LocationAbbr',
+            locationmode="USA-states",
+            color='Data_Value',
+            scope="usa",
+            color_continuous_scale="Blues",
+            labels={'Data_Value': 'Prevalencia (%)'},
+            hover_name='LocationDesc'
+        )
+        fig_map.update_layout(
+            geo_scope='usa',
+            margin={"r":0,"t":0,"l":0,"b":0}
+        )
+        st.plotly_chart(fig_map, use_container_width=True)
 
-        st.subheader("3. Diccionario de Variables")
-        st.markdown("""
-        | Variable | Descripción | Tipo de Dato |
-        | :--- | :--- | :--- |
-        | **LocationDesc** | Nombre de la ubicación geográfica analizada. | Texto |
-        | **Topic** | Descripción del tema de salud estudiado. | Texto |
-        | **Question** | Pregunta realizada en la encuesta. | Texto |
-        | **Data_Value** | Valor numérico de la prevalencia. | Número |
-        | **Stratification1** | Clasificación por grupo de edad. | Texto |
-        | **Stratification2** | Clasificación por género. | Texto |
-        | **Geolocation** | Coordenadas para la representación en mapas. | Geográfico |
-        """)
 
-        st.subheader("4. Guía de Actualización")
-        st.write("""
-        Para mantener este dashboard vigente, se debe descargar el archivo actualizado desde el portal Open Data del CDC. 
-        Al reemplazar el archivo en el repositorio, las métricas y visualizaciones se recalcularán de manera inmediata.
-        """)
+# 5️ METODOLOGÍA
+with tab5:
+    st.header("Metodología y Sostenibilidad de Datos")
 
+    st.subheader("1. Fuente de Datos Oficial")
+    st.markdown("""
+    **Origen:** Centers for Disease Control and Prevention (CDC).  
+    **Dataset:** Alzheimer's Disease and Healthy Aging Data.  
+    **URL:** https://data.cdc.gov/Healthy-Aging/Alzheimer-s-Disease-and-Healthy-Aging-Data/hfr9-rurv/about_data  
+    **Fecha de acceso:** Febrero 2026.
+    """)
+
+    st.subheader("2. Framework QUEST Aplicado")
+    st.info("""
+    * **Question:** ¿Cómo impacta el deterioro cognitivo a los diferentes estados y géneros en EE.UU.?
+    * **Understand:** Análisis de variables demográficas y métricas de salud pública.
+    * **Explore:** Identificación de valores atípicos mediante rankings y mapas.
+    * **Synthesize:** Relación entre edad y diferencias de género.
+    * **Tell:** Visualización orientada a audiencias no técnicas.
+    """)
+
+    st.subheader("3. Guía de Actualización")
+    st.write("""
+    Para mantener este dashboard vigente, se debe descargar el archivo actualizado
+    desde el portal Open Data del CDC. Al reemplazar el archivo, las métricas
+    y visualizaciones se recalcularán automáticamente.
+    """)
+
+
+# 6️ BASE DE DATOS
+with tab6:
+    st.subheader("Explorador de Datos del Informe")
+    st.dataframe(df_mapa, use_container_width=True)
     # Pie de página formal
     st.divider()
     st.markdown("""
