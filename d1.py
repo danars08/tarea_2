@@ -263,7 +263,33 @@ Este indicador permite dimensionar la magnitud del fenómeno y compararlo entre 
     # ---------------- TAB 5 ----------------
     with tab5:
         st.header("Metodología y Sostenibilidad de Datos")
-        st.write("Contenido metodológico aquí.")
+    
+        st.markdown("""
+    **1. Fuente de Datos Oficial**  
+    - Origen: Centers for Disease Control and Prevention (CDC)  
+    - Dataset: Alzheimer's Disease and Healthy Aging Data  
+    - URL: Portal de Datos del CDC  
+    - Fecha de acceso: Febrero 2026  
+    
+    **2. Framework QUEST Aplicado**  
+    - Question: ¿Cómo impacta el deterioro cognitivo a los diferentes estados y géneros en EE.UU.?  
+    - Understand: Análisis de variables demográficas y métricas de salud pública  
+    - Explore: Identificación de valores atípicos mediante rankings y mapas de calor geográficos  
+    - Synthesize: Correlación entre la edad avanzada y la disparidad de género en los reportes de salud  
+    - Tell: Visualización orientada a la toma de decisiones para audiencias no técnicas  
+    
+    **3. Diccionario de Variables**  
+    
+    | Variable        | Descripción                                         | Tipo de Dato |
+    |-----------------|----------------------------------------------------|--------------|
+    | LocationDesc    | Nombre de la ubicación geográfica analizada.       | Texto        |
+    | Topic           | Descripción del tema de salud estudiado.           | Texto        |
+    | Question        | Pregunta realizada en la encuesta.                 | Texto        |
+    | Data_Value      | Valor numérico de la prevalencia.                  | Número       |
+    | Stratification1 | Clasificación por grupo de edad.                   | Texto        |
+    | Stratification2 | Clasificación por género.                           | Texto        |
+    | Geolocation     | Coordenadas para la representación en mapas.       | Geográfico   |
+    """)
 
     # ---------------- TAB 6 ----------------
     with tab6:
