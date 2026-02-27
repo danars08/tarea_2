@@ -79,19 +79,18 @@ df = load_data()
 
 if df is not None:
 
-    # Título
-    st.title("Informe Nacional: Salud Cognitiva y Envejecimiento")
+    # Título principal
+    st.title("Prevalencia de Deterioro Cognitivo Funcional en Población Adulta de Estados Unidos")
 
-    # Resumen Ejecutivo
-    st.markdown("""
-    **Resumen Ejecutivo**
+    # Bloque informativo institucional
+    st.info("""
+**Fuente de los datos:** Behavioral Risk Factor Surveillance System (BRFSS) – CDC.  
+Los valores corresponden a prevalencia autoreportada de dificultad cognitiva funcional.
 
-    Este informe presenta un análisis descriptivo de la prevalencia autoreportada de dificultad cognitiva funcional en Estados Unidos,
-    utilizando el dataset oficial *Alzheimer’s Disease and Healthy Aging Data* del CDC (2026).
-    
-    El estudio explora la evolución temporal, brechas demográficas y diferencias estatales,
-    proporcionando una visión integral del fenómeno en adultos de 50 años en adelante.
-    """)
+**¿Qué es la prevalencia?**  
+La prevalencia es el porcentaje de personas dentro de una población que presentan una condición específica en un período determinado.  
+Este indicador permite dimensionar la magnitud del fenómeno y compararlo entre estados, grupos etarios y géneros.
+""")
 
     st.divider()
 
@@ -145,7 +144,7 @@ if df is not None:
     # ---------------- TAB 1 ----------------
     with tab1:
         st.subheader("Tendencia Temporal de la Prevalencia")
-        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Cómo ha evolucionado la prevalencia de dificultad cognitiva funcional en el tiempo para el grupo seleccionado?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box">¿Cómo ha evolucionado la prevalencia de dificultad cognitiva funcional en el tiempo para el grupo seleccionado?</div>', unsafe_allow_html=True)
 
         df_trend = (
             df_mapa.groupby("YearStart")["Data_Value"]
@@ -168,7 +167,7 @@ if df is not None:
     # ---------------- TAB 2 ----------------
     with tab2:
         st.subheader("Comparativa de Extremos: Top 5 vs Bottom 5")
-        st.markdown('<div class="question-box"></b> ¿Qué estados presentan los niveles más altos y más bajos de prevalencia?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box">¿Qué estados presentan los niveles más altos y más bajos de prevalencia?</div>', unsafe_allow_html=True)
 
         df_ranking = (
             df_mapa.groupby('LocationDesc')['Data_Value']
@@ -211,7 +210,7 @@ if df is not None:
     # ---------------- TAB 3 ----------------
     with tab3:
         st.subheader("Tasa de Prevalencia por Rango de Edad y Sexo")
-        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Existen diferencias en la prevalencia según edad y género?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box">¿Existen diferencias en la prevalencia según edad y género?</div>', unsafe_allow_html=True)
 
         gender_data = (
             df_base_tema[df_base_tema['Stratification2'].isin(['Female', 'Male'])]
@@ -236,14 +235,14 @@ if df is not None:
             gender_data_display = gender_data.rename(columns={
                 'Stratification1': 'Rango de edad',
                 'Stratification2': 'Sexo',
-                'Data_Value': 'Tasa de prevalencia promedio'
+                'Data_Value': 'tasa de prevalencia promedio'
             })
             st.table(gender_data_display)
 
     # ---------------- TAB 4 ----------------
     with tab4:
         st.subheader("Distribución Geográfica de la Prevalencia")
-        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Cómo se distribuye geográficamente la prevalencia en Estados Unidos?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box">¿Cómo se distribuye geográficamente la prevalencia en Estados Unidos?</div>', unsafe_allow_html=True)
 
         df_geo = df_mapa.groupby(['LocationAbbr', 'LocationDesc'])['Data_Value'].mean().reset_index()
 
