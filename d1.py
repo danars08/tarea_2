@@ -265,20 +265,21 @@ Este indicador permite dimensionar la magnitud del fenómeno y compararlo entre 
         st.header("Metodología y Sostenibilidad de Datos")
     
         st.markdown("""
-    **1. Fuente de Datos Oficial**  
+   
+    st.markdown('<h3 style="font-weight:bold; font-size:20px;">1. Fuente de Datos Oficial</h3>', unsafe_allow_html=True)
     - Origen: Centers for Disease Control and Prevention (CDC)  
     - Dataset: Alzheimer's Disease and Healthy Aging Data  
     - URL: Portal de Datos del CDC  
     - Fecha de acceso: Febrero 2026  
     
-    **2. Framework QUEST Aplicado**  
+    st.markdown('<h3 style="font-weight:bold; font-size:20px;">2. Framework QUEST Aplicado</h3>', unsafe_allow_html=True)
     - Question: ¿Cómo impacta el deterioro cognitivo a los diferentes estados y géneros en EE.UU.?  
     - Understand: Análisis de variables demográficas y métricas de salud pública  
     - Explore: Identificación de valores atípicos mediante rankings y mapas de calor geográficos  
     - Synthesize: Correlación entre la edad avanzada y la disparidad de género en los reportes de salud  
     - Tell: Visualización orientada a la toma de decisiones para audiencias no técnicas  
     
-    **3. Diccionario de Variables**  
+   st.markdown('<h3 style="font-weight:bold; font-size:20px;">3. Diccionario de Variables</h3>', unsafe_allow_html=True)
     
     | Variable        | Descripción                                         | Tipo de Dato |
     |-----------------|----------------------------------------------------|--------------|
