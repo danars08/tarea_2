@@ -145,7 +145,7 @@ if df is not None:
     # ---------------- TAB 1 ----------------
     with tab1:
         st.subheader("Tendencia Temporal de la Prevalencia")
-        st.markdown('<div class="question-box"></b> ¿Cómo ha evolucionado la prevalencia de dificultad cognitiva funcional en el tiempo para el grupo seleccionado?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Cómo ha evolucionado la prevalencia de dificultad cognitiva funcional en el tiempo para el grupo seleccionado?</div>', unsafe_allow_html=True)
 
         df_trend = (
             df_mapa.groupby("YearStart")["Data_Value"]
@@ -168,6 +168,7 @@ if df is not None:
     # ---------------- TAB 2 ----------------
     with tab2:
         st.subheader("Comparativa de Extremos: Top 5 vs Bottom 5")
+        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Qué estados presentan los niveles más altos y más bajos de prevalencia?</div>', unsafe_allow_html=True)
 
         df_ranking = (
             df_mapa.groupby('LocationDesc')['Data_Value']
@@ -210,7 +211,7 @@ if df is not None:
     # ---------------- TAB 3 ----------------
     with tab3:
         st.subheader("Tasa de Prevalencia por Rango de Edad y Sexo")
-        st.markdown('<div class="question-box"></b> ¿Existen diferencias en la prevalencia según edad y género?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Existen diferencias en la prevalencia según edad y género?</div>', unsafe_allow_html=True)
 
         gender_data = (
             df_base_tema[df_base_tema['Stratification2'].isin(['Female', 'Male'])]
@@ -231,14 +232,18 @@ if df is not None:
             )
             st.plotly_chart(fig_gen, use_container_width=True)
 
-            # Tabla con nombre personalizado para la tercera columna
-            gender_data_display = gender_data.rename(columns={'Data_Value': 'tasa de prevalencia promedio'})
+            # Tabla con columnas renombradas
+            gender_data_display = gender_data.rename(columns={
+                'Stratification1': 'Rango de edad',
+                'Stratification2': 'Sexo',
+                'Data_Value': 'tasa de prevalencia promedio'
+            })
             st.table(gender_data_display)
 
     # ---------------- TAB 4 ----------------
     with tab4:
         st.subheader("Distribución Geográfica de la Prevalencia")
-        st.markdown('<div class="question-box"></b> ¿Cómo se distribuye geográficamente la prevalencia en Estados Unidos?</div>', unsafe_allow_html=True)
+        st.markdown('<div class="question-box"><b>Pregunta que responde:</b> ¿Cómo se distribuye geográficamente la prevalencia en Estados Unidos?</div>', unsafe_allow_html=True)
 
         df_geo = df_mapa.groupby(['LocationAbbr', 'LocationDesc'])['Data_Value'].mean().reset_index()
 
